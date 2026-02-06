@@ -4,10 +4,10 @@ defmodule ShEx.ShExC.ParseHelper do
   import RDF.Serialization.ParseHelper
 
   def code_str(value),
-    do: value |> to_str() |> String.slice(1..-3)
+    do: value |> to_str() |> String.slice(1..-3//-1)
 
   def repeat_range(value) do
-    content = value |> to_str() |> String.slice(1..-2)
+    content = value |> to_str() |> String.slice(1..-2//-1)
 
     case content |> String.split(",") |> Enum.map(&range_member/1) do
       [lower, upper] -> {lower, upper}
