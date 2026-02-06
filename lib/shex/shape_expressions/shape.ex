@@ -25,8 +25,8 @@ defmodule ShEx.Shape do
     # having currently no index on the triple objects, we do this only when
     # necessary, i.e. when inverse triple expressions exist.
     arcs_in =
-      unless shape.expression &&
-               ShEx.TripleExpression.required_arcs(shape.expression, state) == {:arcs_out} do
+      if !(shape.expression &&
+             ShEx.TripleExpression.required_arcs(shape.expression, state) == {:arcs_out}) do
         arcs_in(graph, node)
       end
 

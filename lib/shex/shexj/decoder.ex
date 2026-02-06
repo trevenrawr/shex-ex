@@ -215,7 +215,7 @@ defmodule ShEx.ShExJ.Decoder do
     end
   end
 
-  defp to_triple_expression(%{type: "TripleConstraint"} = invalid, options) do
+  defp to_triple_expression(%{type: "TripleConstraint"} = invalid, _options) do
     {:error, "invalid TripleConstraint: #{inspect(invalid)}}"}
   end
 
@@ -295,7 +295,7 @@ defmodule ShEx.ShExJ.Decoder do
   end
 
   defp to_annotation(
-         %{type: "Annotation", predicate: predicate, object: object} = annotation,
+         %{type: "Annotation", predicate: predicate, object: object} = _annotation,
          options
        )
        when is_binary(predicate) do
@@ -313,7 +313,7 @@ defmodule ShEx.ShExJ.Decoder do
     {:error, "invalid Annotation: #{inspect(invalid)}"}
   end
 
-  defp to_shape_expression_label("_:" <> bnode, options),
+  defp to_shape_expression_label("_:" <> bnode, _options),
     do: {:ok, RDF.bnode(bnode)}
 
   defp to_shape_expression_label(iri, options) when is_binary(iri),
@@ -322,7 +322,7 @@ defmodule ShEx.ShExJ.Decoder do
   defp to_shape_expression_label(invalid, _),
     do: {:error, "invalid shape expression label: #{inspect(invalid)}}"}
 
-  defp to_triple_expression_label("_:" <> bnode, options),
+  defp to_triple_expression_label("_:" <> bnode, _options),
     do: {:ok, RDF.bnode(bnode)}
 
   defp to_triple_expression_label(iri, options) when is_binary(iri),
@@ -373,7 +373,7 @@ defmodule ShEx.ShExJ.Decoder do
     {:ok, stem}
   end
 
-  defp to_value_set_value(%{exclusions: _} = stem_range, options) do
+  defp to_value_set_value(%{exclusions: _} = stem_range, _options) do
     {:ok, stem_range}
   end
 
@@ -430,7 +430,7 @@ defmodule ShEx.ShExJ.Decoder do
   defp to_bool(invalid, _),
     do: {:error, "invalid boolean: #{inspect(invalid)}}"}
 
-  defp parse_json(content, _opts \\ []) do
+  defp parse_json(content, _opts) do
     Jason.decode(content, keys: :atoms!)
   rescue
     error in [ArgumentError] ->

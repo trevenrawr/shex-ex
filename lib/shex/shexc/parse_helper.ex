@@ -21,21 +21,21 @@ defmodule ShEx.ShExC.ParseHelper do
 
   def to_str(value), do: List.to_string(value)
 
-  def lang_quoted_content_str('"' ++ value),
+  def lang_quoted_content_str(~c'"' ++ value),
     do: value |> to_str() |> split_lang_from_string(~s["])
 
-  def lang_quoted_content_str('\'' ++ value),
+  def lang_quoted_content_str(~c"'" ++ value),
     do: value |> to_str() |> split_lang_from_string("'")
 
-  def lang_long_quoted_content_str('"""' ++ value),
+  def lang_long_quoted_content_str(~c'"""' ++ value),
     do: value |> to_str() |> split_lang_from_string(~s["""])
 
-  def lang_long_quoted_content_str('\'\'\'' ++ value),
+  def lang_long_quoted_content_str(~c"'''" ++ value),
     do: value |> to_str() |> split_lang_from_string("'''")
 
   defp split_lang_from_string(str, quotes),
     do: str |> String.split(quotes <> "@") |> List.to_tuple()
 
   def to_lang_literal({:lang_string_literal_quote, _line, {value, language}}),
-    do: value |> string_unescape |> RDF.literal(language: language)
+    do: value |> string_unescape() |> RDF.literal(language: language)
 end

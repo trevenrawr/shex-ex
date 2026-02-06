@@ -16,7 +16,7 @@ defmodule ShEx.NodeConstraint do
     :values
   ]
 
-  alias RDF.{IRI, BlankNode, Literal, XSD, NS}
+  alias RDF.{IRI, BlankNode, Literal, XSD}
 
   @node_kinds ~w[iri bnode nonliteral literal]
 

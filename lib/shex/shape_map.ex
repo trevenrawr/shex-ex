@@ -143,7 +143,7 @@ defmodule ShEx.ShapeMap do
       do: association
 
     @doc false
-    def violation(%__MODULE__{} = association, reasons, app_infos \\ nil) do
+    def violation(%__MODULE__{} = association, reasons, _app_infos \\ nil) do
       %__MODULE__{
         association
         | status: :nonconformant,

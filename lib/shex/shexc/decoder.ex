@@ -38,7 +38,7 @@ defmodule ShEx.ShExC.Decoder do
     end
   end
 
-  defp tokenize(content), do: content |> to_charlist |> :shexc_lexer.string()
+  defp tokenize(content), do: content |> to_charlist() |> :shexc_lexer.string()
 
   defp parse([]), do: {:ok, []}
   defp parse(tokens), do: tokens |> :shexc_parser.parse()
@@ -64,9 +64,9 @@ defmodule ShEx.ShExC.Decoder do
              end
            end) do
       ShEx.Schema.new(
-        unless(Enum.empty?(shapes), do: Enum.reverse(shapes)),
+        if(!Enum.empty?(shapes), do: Enum.reverse(shapes)),
         start,
-        unless(Enum.empty?(imports), do: imports),
+        if(!Enum.empty?(imports), do: imports),
         start_acts
       )
     end
@@ -201,7 +201,7 @@ defmodule ShEx.ShExC.Decoder do
        %ShEx.Shape{
          expression: triple_expression,
          closed: closed,
-         extra: unless(Enum.empty?(extra), do: extra),
+         extra: if(!Enum.empty?(extra), do: extra),
          sem_acts: sem_acts,
          annotations: annotations
        }}

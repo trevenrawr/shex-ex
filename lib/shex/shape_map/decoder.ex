@@ -30,7 +30,7 @@ defmodule ShEx.ShapeMap.Decoder do
 
   defp error_description(error_descriptor), do: inspect(error_descriptor)
 
-  defp tokenize(content), do: content |> to_charlist |> :shape_map_lexer.string()
+  defp tokenize(content), do: content |> to_charlist() |> :shape_map_lexer.string()
 
   defp parse([]), do: {:ok, []}
   defp parse(tokens), do: tokens |> :shape_map_parser.parse()

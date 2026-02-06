@@ -103,7 +103,7 @@ defmodule ShEx.Schema do
 
   defp use_parallelization?(parallel, _), do: parallel
 
-  defp flow_opts_defaults(shape_map, data, opts) do
+  defp flow_opts_defaults(_shape_map, _data, _opts) do
     @flow_opts_defaults || [max_demand: 3]
   end
 

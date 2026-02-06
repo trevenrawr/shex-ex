@@ -101,5 +101,5 @@ defmodule ShEx.TestSuite do
   end
 
   defp value(description, property),
-    do: Description.first(description, property) |> to_string
+    do: Description.first(description, property) |> to_string()
 end

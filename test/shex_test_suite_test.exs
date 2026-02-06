@@ -187,8 +187,8 @@ defmodule ShEx.TestSuiteTest do
         # TODO: The schemas for these seem to be different ... see also "schemas" tests
         test_case_name = TestSuite.test_case_name(test_case)
 
-        unless String.starts_with?(test_case_name, "FocusIRI2groupBnodeNested2groupIRIRef") or
-                 String.starts_with?(test_case_name, "FocusIRI2EachBnodeNested2EachIRIRef") do
+        if !(String.starts_with?(test_case_name, "FocusIRI2groupBnodeNested2groupIRIRef") or
+               String.starts_with?(test_case_name, "FocusIRI2EachBnodeNested2EachIRIRef")) do
           assert shexj_schema == schema
         end
       end
