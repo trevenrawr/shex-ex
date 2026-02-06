@@ -1,6 +1,12 @@
 defmodule ShEx.Violation.Shared do
   @moduledoc false
 
+  @doc """
+  A human representation of the violation.
+
+  Currently it's the same as the reason, but might contain additional
+  information in the future.
+  """
   def message(violation) do
     ShEx.Violation.reason(violation)
   end
@@ -31,14 +37,6 @@ defprotocol ShEx.Violation do
 
   @doc false
   def reason_doc(violation)
-
-  @doc """
-  A human representation of the violation.
-
-  Currently it's the same as the reason, but might contain additional
-  information in the future.
-  """
-  defdelegate message(violation), to: ShEx.Violation.Shared
 end
 
 defmodule ShEx.Violation.NodeKindConstraint do
