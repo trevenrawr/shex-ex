@@ -19,8 +19,8 @@ defmodule ShEx.Schema do
 
   alias ShEx.{ShapeMap, ShapeExpression}
 
-  @parallel_default Application.get_env(:shex, :parallel)
-  @flow_opts_defaults Application.get_env(:shex, :flow_opts)
+  @parallel_default Application.compile_env(:shex, :parallel)
+  @flow_opts_defaults Application.compile_env(:shex, :flow_opts)
   @flow_opts MapSet.new(~w[max_demand min_demand stages window buffer_keep buffer_size]a)
 
   @doc !"""
@@ -108,7 +108,7 @@ defmodule ShEx.Schema do
   end
 
   defp check_refs(schema, labeled_triple_expressions) do
-    ShEx.Operator.check(schema, fn
+    ShEx.Operator.Shared.check(schema, fn
       {:shape_expression_label, id} ->
         if schema.shapes[id] do
           :ok

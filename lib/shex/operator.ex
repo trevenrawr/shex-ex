@@ -13,7 +13,7 @@ defmodule ShEx.Operator.Shared do
           end
 
         child, _ ->
-          case ShEx.Operator.check(child, fun) do
+          case ShEx.Operator.Shared.check(child, fun) do
             :ok -> {:cont, :ok}
             fail -> {:halt, fail}
           end
@@ -28,6 +28,4 @@ defprotocol ShEx.Operator do
   def children(operator)
 
   def triple_expression_label_and_operands(operator)
-
-  defdelegate check(operator, fun), to: ShEx.Operator.Shared
 end
