@@ -9,10 +9,11 @@ defmodule ShEx.MixProject do
     [
       app: :shex,
       version: @version,
-      elixir: "~> 1.8",
+      elixir: "~> 1.19",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       elixirc_paths: elixirc_paths(Mix.env()),
+      compilers: [:leex, :yecc] ++ Mix.compilers(),
 
       # Hex
       package: package(),
@@ -56,13 +57,13 @@ defmodule ShEx.MixProject do
 
   defp deps do
     [
-      {:rdf, "~> 0.9"},
-      {:flow, "~> 1.0"},
-      {:jason, "~> 1.2"},
+      {:rdf, "~> 2.0"},
+      {:flow, "~> 1.2"},
+      {:jason, "~> 1.4"},
 
       # Development
-      {:credo, "~> 1.4", only: [:dev, :test], runtime: false},
-      {:ex_doc, "~> 0.23", only: :dev, runtime: false}
+      {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
+      {:ex_doc, "~> 0.40", only: :dev, runtime: false}
     ]
   end
 
